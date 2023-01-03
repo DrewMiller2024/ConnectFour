@@ -19,6 +19,7 @@ public class ConnectFour {
     }
     
     public void playConnectFour() {
+        System.out.println("0 represents an empty spot -- 1 represents player 1's tiles -- 2 represents player 2's tiles");
         System.out.println("|"+gameboard[0][0]+"|"+gameboard[0][1]+"|"+gameboard[0][2]+"|"+gameboard[0][3]+"|"+gameboard[0][4]+"|"+gameboard[0][5]+"|"+gameboard[0][6]+"|");
         System.out.println("|"+gameboard[1][0]+"|"+gameboard[1][1]+"|"+gameboard[1][2]+"|"+gameboard[1][3]+"|"+gameboard[1][4]+"|"+gameboard[1][5]+"|"+gameboard[1][6]+"|");
         System.out.println("|"+gameboard[2][0]+"|"+gameboard[2][1]+"|"+gameboard[2][2]+"|"+gameboard[2][3]+"|"+gameboard[2][4]+"|"+gameboard[2][5]+"|"+gameboard[2][6]+"|");
