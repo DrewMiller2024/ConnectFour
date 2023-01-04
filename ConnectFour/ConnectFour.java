@@ -12,7 +12,7 @@ public class ConnectFour {
         System.out.println("--Use the playConnectFour method to begin game--");
         System.out.println("--0 represents an empty spot -- 1 represents player 1's tiles -- 2 represents player 2's tiles--");
         System.out.println("--First, type the column that player 1 wishes to place their tile, next player 2 type the column they wish to place a tile--");
-        System.out.println("--Only type in the numbers 1 or 2--");
+        System.out.println("-- Only type in the numbers/columns 1-7 --");
         this.LOWER_BOUND = 1;
         this.UPPER_BOUND = 7;
     }
