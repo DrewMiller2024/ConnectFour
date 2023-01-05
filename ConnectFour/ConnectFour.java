@@ -5,6 +5,7 @@ public class ConnectFour {
     private Scanner scanner = new Scanner(System.in);
     private int scannerInput;
     private boolean gameIsRunning;
+    private boolean placeTile;
     private int LOWER_BOUND;
     private int UPPER_BOUND;
 
@@ -50,7 +51,10 @@ public class ConnectFour {
                 } else if (scannerInput > UPPER_BOUND) {
                     System.out.println("-- There is no column above the number 7, please put a column from 1-7 --");
                 } else {
-                    
+                    this.placeTile = true;
+                    while (placeTile == true) {
+                        
+                    }
                     
                     System.out.println("|"+gameboard[5][0]+"|"+gameboard[5][1]+"|"+gameboard[5][2]+"|"+gameboard[5][3]+"|"+gameboard[5][4]+"|"+gameboard[5][5]+"|"+gameboard[5][6]+"|");
                     System.out.println("|"+gameboard[4][0]+"|"+gameboard[4][1]+"|"+gameboard[4][2]+"|"+gameboard[4][3]+"|"+gameboard[4][4]+"|"+gameboard[4][5]+"|"+gameboard[4][6]+"|");
