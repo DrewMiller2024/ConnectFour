@@ -47,9 +47,9 @@ public class ConnectFour {
             try {
                 scannerInput = scanner.nextInt();
                 if (scannerInput < LOWER_BOUND) {
-                    System.out.println("-- There is no column under the number 1, please put a column from 1-7 --");
+                    System.out.println("-- There is no column under the number 1, please put a column from 1-7, player 1 turn has been skipped --");
                 } else if (scannerInput > UPPER_BOUND) {
-                    System.out.println("-- There is no column above the number 7, please put a column from 1-7 --");
+                    System.out.println("-- There is no column above the number 7, please put a column from 1-7, player 1 turn has been skipped --");
                 } else {
                     this.placeTile = true;
                     while (placeTile == true) {
@@ -66,7 +66,7 @@ public class ConnectFour {
                     System.out.println("-"+"1"+"-"+"2"+"-"+"3"+"-"+"4"+"-"+"5"+"-"+"6"+"-"+"7"+"-");
                 }
             } catch (InputMismatchException error) {
-                System.out.println("-- Please type the column you wish to play, a number from 1-7 --");
+                System.out.println("-- Please type the column you wish to play, a number from 1-7, player 1 turn has been skipped --");
                 scanner.next();
             }
         }
