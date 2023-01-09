@@ -11,7 +11,7 @@ public class ConnectFour {
 
     public static void main(String[] args) {
         System.out.println("--Use the playConnectFour method to begin game--");
-        System.out.println("--0 represents an empty spot -- 1 represents player 1's tiles -- 2 represents player 2's tiles--");
+        System.out.println("--1 represents player 1's tiles -- 2 represents player 2's tiles--");
         System.out.println("--First, type the column that player 1 wishes to place their tile, next player 2 type the column they wish to place a tile--");
         System.out.println("-- Only type in the numbers/columns 1-7 --");
         ConnectFour play = new ConnectFour();
