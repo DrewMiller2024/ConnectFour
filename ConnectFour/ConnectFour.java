@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
 public class ConnectFour {
-    private int[][] gameboard = new int[6][7];
+    private String[][] gameboard = new String[6][7];
     private Scanner scanner = new Scanner(System.in);
     private int scannerInput;
     private int scannerVariable;
@@ -13,7 +13,7 @@ public class ConnectFour {
 
     public static void main(String[] args) {
         System.out.println("--Use the playConnectFour method to begin game--");
-        System.out.println("--1 represents player 1's tiles -- 2 represents player 2's tiles--");
+        System.out.println("-- X represents player 1's tiles -- O represents player 2's tiles--");
         System.out.println("--First, type the column that player 1 wishes to place their tile, next player 2 type the column they wish to place a tile--");
         System.out.println("-- Only type in the numbers/columns 1-7 --");
         ConnectFour play = new ConnectFour();
@@ -22,12 +22,12 @@ public class ConnectFour {
 
     public void playConnectFour() {
         for (int i = 0; i < 7; i++) {
-            gameboard[0][i] = 0;
-            gameboard[1][i] = 0;
-            gameboard[2][i] = 0;
-            gameboard[3][i] = 0;
-            gameboard[4][i] = 0;
-            gameboard[5][i] = 0;
+            gameboard[0][i] = " ";
+            gameboard[1][i] = " ";
+            gameboard[2][i] = " ";
+            gameboard[3][i] = " ";
+            gameboard[4][i] = " ";
+            gameboard[5][i] = " ";
         }
 
         this.gameIsRunning = true;
@@ -60,8 +60,8 @@ public class ConnectFour {
                                     forLoop = false;
                                     placeTile = false;
                                 } else
-                                if (gameboard[i][scannerVariable] == 0) {
-                                    gameboard[i][scannerVariable] = 1;
+                                if (gameboard[i][scannerVariable].equals(" ")) {
+                                    gameboard[i][scannerVariable] = "X";
                                     forLoop = false;
                                     placeTile = false;
                                 }
@@ -103,8 +103,8 @@ public class ConnectFour {
                                     forLoop = false;
                                     placeTile = false;
                                 } else
-                                if (gameboard[i][scannerVariable] == 0) {
-                                    gameboard[i][scannerVariable] = 2;
+                                if (gameboard[i][scannerVariable].equals(" ")) {
+                                    gameboard[i][scannerVariable] = "O";
                                     forLoop = false;
                                     placeTile = false;
                                 }
