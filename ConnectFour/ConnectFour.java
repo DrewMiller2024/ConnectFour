@@ -85,7 +85,7 @@ public class ConnectFour {
                                 }
                             }
                         }
-                        
+                        //do for loop with 3 row checks, and go through the columns 4 times for diagnol check for win
                         
                     }
                 }
