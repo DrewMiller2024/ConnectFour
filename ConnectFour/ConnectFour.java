@@ -70,6 +70,23 @@ public class ConnectFour {
                         }
                         System.out.println("");
                         System.out.println("- "+"1"+" - "+"2"+" - "+"3"+" - "+"4"+" - "+"5"+" - "+"6"+" - "+"7"+" -");
+
+                        for (int i = 0; i < 3; i++) {
+                            if (gameboard[i][scannerVariable] == "X" && gameboard[i+1][scannerVariable] == "X" && gameboard[i+2][scannerVariable] == "X" && gameboard[i+3][scannerVariable] == "X") {
+                                System.out.println("--Player 1 has won!--");
+                                gameIsRunning = false;
+                            }
+                        }
+                        for (int i = 0; i < 4; i++) {
+                            for (int a = 0; a < 6; a++) {
+                                if (gameboard[a][i] == "X" && gameboard[a][i+1] == "X" && gameboard[a][i+2] == "X" && gameboard[a][i+3] == "X") {
+                                    System.out.println("--Player 1 has won!--");
+                                    gameIsRunning = false;
+                                }
+                            }
+                        }
+                        
+                        
                     }
                 }
             } catch (InputMismatchException error) {
@@ -110,6 +127,23 @@ public class ConnectFour {
                         }
                         System.out.println("");
                         System.out.println("- "+"1"+" - "+"2"+" - "+"3"+" - "+"4"+" - "+"5"+" - "+"6"+" - "+"7"+" -");
+
+                        for (int i = 0; i < 3; i++) {
+                            if (gameboard[i][scannerVariable] == "O" && gameboard[i+1][scannerVariable] == "O" && gameboard[i+2][scannerVariable] == "O" && gameboard[i+3][scannerVariable] == "O") {
+                                System.out.println("--Player 2 has won!--");
+                                gameIsRunning = false;
+                            }
+                        }
+                        for (int i = 0; i < 4; i++) {
+                            for (int a = 0; a < 6; a++) {
+                                if (gameboard[a][i] == "O" && gameboard[a][i+1] == "O" && gameboard[a][i+2] == "O" && gameboard[a][i+3] == "O") {
+                                    System.out.println("--Player 2 has won!--");
+                                    gameIsRunning = false;
+                                }
+                            }
+                        }
+                        
+                        
                     }
                 }
             } catch (InputMismatchException error) {
