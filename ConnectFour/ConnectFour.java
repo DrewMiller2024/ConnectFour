@@ -85,7 +85,23 @@ public class ConnectFour {
                                 }
                             }
                         }
-                        //do for loop with 3 row checks, and go through the columns 4 times for diagnal check for win
+                        for (int b = 0; b < 3; b++) {
+                            for (int c = 0; c < 4; c++) {
+                                if(gameboard[b][c] == "X" && gameboard[b+1][c+1] == "X" && gameboard[b+2][c+2] == "X" && gameboard[b+3][c+3] == "X") {
+                                    System.out.println("--Player 1 has won!--");
+                                    gameIsRunning = false;
+                                }
+                            }
+                        }
+                        for (int b = 0; b < 3; b++) {
+                            for (int c = 6; c > 2; c--) {
+                                if(gameboard[b][c] == "X" && gameboard[b+1][c-1] == "X" && gameboard[b+2][c-2] == "X" && gameboard[b+3][c-3] == "X") {
+                                    System.out.println("--Player 1 has won!--");
+                                    gameIsRunning = false;
+                                }
+                            }
+                        }
+                        
                         
                     }
                 }
@@ -142,7 +158,22 @@ public class ConnectFour {
                                 }
                             }
                         }
-                        
+                        for (int b = 0; b < 3; b++) {
+                            for (int c = 0; c < 4; c++) {
+                                if(gameboard[b][c] == "O" && gameboard[b+1][c+1] == "O" && gameboard[b+2][c+2] == "O" && gameboard[b+3][c+3] == "O") {
+                                    System.out.println("--Player 2 has won!--");
+                                    gameIsRunning = false;
+                                }
+                            }
+                        }
+                        for (int b = 0; b < 3; b++) {
+                            for (int c = 6; c > 2; c--) {
+                                if(gameboard[b][c] == "O" && gameboard[b+1][c-1] == "O" && gameboard[b+2][c-2] == "O" && gameboard[b+3][c-3] == "O") {
+                                    System.out.println("--Player 2 has won!--");
+                                    gameIsRunning = false;
+                                }
+                            }
+                        }
                         
                     }
                 }
