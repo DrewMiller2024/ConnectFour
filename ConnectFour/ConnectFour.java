@@ -12,7 +12,6 @@ public class ConnectFour {
     private int UPPER_BOUND = 7;
 
     public static void main(String[] args) {
-        System.out.println("--Use the playConnectFour method to begin game--");
         System.out.println("-- X represents player 1's tiles -- O represents player 2's tiles--");
         System.out.println("--First, type the column that player 1 wishes to place their tile, next player 2 type the column they wish to place a tile--");
         System.out.println("-- Only type in the numbers/columns 1-7 --");
