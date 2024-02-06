@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
-public class ConnectFour {
+public class BadConnectFour {
     private String[][] gameboard = new String[6][7];
     private Scanner scanner = new Scanner(System.in);
     private int scannerInput;
@@ -15,7 +15,7 @@ public class ConnectFour {
         System.out.println("-- X represents player 1's tiles -- O represents player 2's tiles--");
         System.out.println("--First, type the column that player 1 wishes to place their tile, next player 2 type the column they wish to place a tile--");
         System.out.println("-- The first player to connect 4 tiles in 1 line wins. Remember, only type in the numbers/columns 1-7 --");
-        ConnectFour play = new ConnectFour();
+        BadConnectFour play = new BadConnectFour();
         play.playConnectFour();
     }
 
@@ -72,8 +72,8 @@ public class ConnectFour {
         for (int z = 0; z < 6; z++) {
             for (int i = 0; i < 7; i++) {
                 gameboard[z][i] = " ";
+            }
         }
-    }
 
         for (int i = 5; i >= 0; i--) {
             System.out.println("| "+gameboard[i][0]+" | "+gameboard[i][1]+" | "+gameboard[i][2]+" | "+gameboard[i][3]+" | "+gameboard[i][4]+" | "+gameboard[i][5]+" | "+gameboard[i][6]+" |");
@@ -116,8 +116,7 @@ public class ConnectFour {
                         System.out.println("- "+"1"+" - "+"2"+" - "+"3"+" - "+"4"+" - "+"5"+" - "+"6"+" - "+"7"+" -");
 
                         checkForWinner();
-                        
-                        
+
                     }
                 }
             } catch (InputMismatchException error) {
@@ -160,7 +159,6 @@ public class ConnectFour {
                         System.out.println("- "+"1"+" - "+"2"+" - "+"3"+" - "+"4"+" - "+"5"+" - "+"6"+" - "+"7"+" -");
 
                         checkForWinner();
-                        
                     }
                 }
             } catch (InputMismatchException error) {
