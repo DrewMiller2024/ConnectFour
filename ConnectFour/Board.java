@@ -24,6 +24,10 @@ public class Board
     public void updateCell(int row, int col, char chaar) {
         board[row][col] = chaar;
     }
+    
+    public char getCell(int row, int col) {
+        return board[row][col];
+    }
 
     public void printBoard() {
         for (int i = 0; i < Constants.ROWS; i++) {

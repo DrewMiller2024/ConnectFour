@@ -1,4 +1,4 @@
- 
+import java.util.Scanner;
 /**
  * Write a description of class Controller here.
  *
@@ -7,11 +7,21 @@
  */
 public class Controller
 {
-    public static void main(String []args) {
-        //instantiate variables
-    }
+    private Scanner scanner;
+    private Board board;
     
     public void eventLoop() {
-        //event loop
+        //instantiate variables
+        scanner = new Scanner(System.in);
+        this.board = new Board();
+        
+        //run event loop
+        board.printBoard();
+    }
+    
+    public static void main(String[] args) {
+        //instantiate variables
+        Controller controller = new Controller();
+        controller.eventLoop();
     }
 }
