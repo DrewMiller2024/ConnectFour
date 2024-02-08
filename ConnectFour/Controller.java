@@ -25,7 +25,7 @@ public class Controller
         
         
         //run event loop
-        System.out.printf(Constants.RULES+"\n",player1, player2);
+        System.out.printf(Constants.RULES+"\n",player1, Constants.PLAYER_ONE, player2, Constants.PLAYER_TWO);
         board.printBoard();
     }
     

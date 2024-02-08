@@ -18,5 +18,5 @@ public class Constants
     
     //print statements
     public static final String REQUEST_PLAYER_NAME = "Player %d: ";
-    public static final String RULES = "--%s is 'X', %s is 'O'--\n--Type a column number to place a tile--";
+    public static final String RULES = "--%s is '%c', %s is '%c'--\n--Type a column number to place a tile--";
 }
