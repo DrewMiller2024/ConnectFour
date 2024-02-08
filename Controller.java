@@ -12,7 +12,7 @@ public class Controller
     private String player1;
     private String player2;
 
-    public void eventLoop() {
+    public boolean eventLoop() {
         //instantiate variables
         scanner = new Scanner(System.in);
         this.board = new Board();
@@ -25,7 +25,7 @@ public class Controller
                 break;
             }
             if (in.equals(Constants.STOP)) {
-                return;
+                return false;
             }
         } 
 
@@ -37,13 +37,23 @@ public class Controller
         player2 = scanner.nextLine();
 
         //run event loop
-        System.out.printf(Constants.RULES+"\n",player1, Constants.PLAYER_ONE, player2, Constants.PLAYER_TWO);
+        System.out.printf(Constants.RULES+"\n",player1, player2);
         board.printBoard();
         //add while loop here
+        
+        // go back to controller and start a new game
+        return true;
     }
 
     public static void main(String[] args) {
-        Controller controller = new Controller();
-        controller.eventLoop();
+        boolean gameIsRunning = true;
+        
+        while (gameIsRunning) {
+            Controller controller = new Controller();
+            boolean newGame = controller.eventLoop();
+            if (!newGame) {
+                gameIsRunning = false;
+            }
+        }
     }
 }
