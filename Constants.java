@@ -7,6 +7,11 @@
  */
 public class Constants
 {
+    //confirm start or stop keys
+    public static final String START = "s";
+    public static final String STOP = "q";
+    public static final String SS = "Start: "+START+", Stop: "+STOP;
+    
     // size of the board
     public static final int ROWS = 6;
     public static final int COLS = 7;
