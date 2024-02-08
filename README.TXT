@@ -4,9 +4,9 @@ Tell the reader (someone who does not know anything about this project)
 all they need to know. The comments should usually include at least:
 ------------------------------------------------------------------------
 
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
-HOW TO START THIS PROJECT:
-AUTHORS:
-USER INSTRUCTIONS:
+PROJECT TITLE: Connect Four
+PURPOSE OF PROJECT: Connect Four
+VERSION or DATE: 1.0.0
+HOW TO START THIS PROJECT: Run main method of Controller.java
+AUTHORS: Drew Miller
+USER INSTRUCTIONS: Run the main method of Controller.java
