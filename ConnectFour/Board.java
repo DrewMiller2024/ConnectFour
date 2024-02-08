@@ -38,6 +38,10 @@ public class Board
             System.out.println("|");
         }
         printLine();
+        for (int i = 0; i < Constants.COLS; i++) {
+            System.out.printf("- %d ", i+1);
+        }
+        System.out.println("-");
     }
 
     private void printLine() {

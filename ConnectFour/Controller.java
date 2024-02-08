@@ -9,13 +9,23 @@ public class Controller
 {
     private Scanner scanner;
     private Board board;
+    private String player1;
+    private String player2;
     
     public void eventLoop() {
         //instantiate variables
         scanner = new Scanner(System.in);
         this.board = new Board();
         
+        //request player names
+        System.out.printf(Constants.REQUEST_PLAYER_NAME, 1);
+        player1 = scanner.nextLine();
+        System.out.printf(Constants.REQUEST_PLAYER_NAME, 2);
+        player2 = scanner.nextLine();
+        
+        
         //run event loop
+        System.out.printf(Constants.RULES+"\n",player1, player2);
         board.printBoard();
     }
     
