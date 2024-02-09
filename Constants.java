@@ -21,7 +21,13 @@ public class Constants
     public static final char PLAYER_ONE = 'X';
     public static final char PLAYER_TWO = 'O';
     
+    //game state variables
+    public static final int IN_PLAY = 0;
+    public static final int P1_WINS = 1;
+    public static final int P2_WINS = 2;
+    
     //print statements
     public static final String REQUEST_PLAYER_NAME = "Player %d: ";
     public static final String RULES = "--%s is "+Constants.PLAYER_ONE+", %s is "+Constants.PLAYER_TWO+"--\n--Type a column number to place a tile--";
+    public static final String STATS = "\n--Stats--\nGames Played: %d\n%s: %d\n%s: %d";
 }
