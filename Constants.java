@@ -25,6 +25,7 @@ public class Constants
     public static final int IN_PLAY = 0;
     public static final int P1_WINS = 1;
     public static final int P2_WINS = 2;
+    public static final int DRAW = 3;
     
     //print statements
     public static final String REQUEST_PLAYER_NAME = "Player %d: ";
