@@ -23,7 +23,7 @@ public class Controller
     public void start() {
         //instantiate variables
         scanner = new Scanner(System.in);
-        
+
         //instantiate stats
         gameStatus = Constants.IN_PLAY;
         gamesPlayed = 0;
@@ -55,8 +55,7 @@ public class Controller
     public void eventLoop() {
         //run event loop
         System.out.printf(Constants.RULES+"\n",player1, player2);
-        
-        
+
         //while loop, where the game is being played
         boolean gameIsRunning = true;
         String curPlayer = player1;
@@ -67,10 +66,10 @@ public class Controller
             board.printBoard();
             //player making a move
             System.out.printf("--%s's turn--",curPlayer);
-            makeMove(curPlayer, curTile);
-            
+            int move = makeMove(curPlayer, curTile);
+
             //check for winner or draw(full board)
-            
+            checkForWinner(curPlayer,curTile, move);
 
             //condition to stop playing game
             if(gameStatus!=Constants.IN_PLAY) {
@@ -80,41 +79,52 @@ public class Controller
             curPlayer = (curPlayer.equals(player1) ? player2 : player1);
             curTile = (curTile == Constants.PLAYER_ONE ? Constants.PLAYER_TWO : Constants.PLAYER_ONE);
         }
-        
+
         //handle updating stats after a game is over
         gameOver();
     }
-    
-    public void makeMove(String curPlayer, char curTile) {
+
+    public int makeMove(String curPlayer, char curTile) {
         while(true) {
-                //get player's choice of col
-                int col = -1;
-                try {
-                    col = scanner.nextInt();
-                    col--;
-                    if (col < 0 || col >= Constants.COLS) {
-                        //enter an integer out of scope of columns
-                        System.out.println("--Please enter a real column--");
-                        scanner.nextLine();
-                    } else if (board.getCell(0, col) != Constants.EMPTY) {
-                        //entered an integer of a full column
-                        System.out.printf("--Column %d is full--\n",col+1);
-                    } else {
-                        for (int i = Constants.ROWS-1; i >=0; i--) {
-                            if (board.getCell(i, col) == Constants.EMPTY) {
-                                board.updateCell(i, col, curTile);
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
-                catch (InputMismatchException e) {
-                    //didn't enter an integer
-                    System.out.println("--Please enter a real number--");
+            //get player's choice of col
+            int col = -1;
+            try {
+                col = scanner.nextInt();
+                col--;
+                if (col < 0 || col >= Constants.COLS) {
+                    //enter an integer out of scope of columns
+                    System.out.println("--Please enter a real column--");
                     scanner.nextLine();
+                } else if (board.getCell(0, col) != Constants.EMPTY) {
+                    //entered an integer of a full column
+                    System.out.printf("--Column %d is full--\n",col+1);
+                } else {
+                    for (int i = Constants.ROWS-1; i >=0; i--) {
+                        if (board.getCell(i, col) == Constants.EMPTY) {
+                            board.updateCell(i, col, curTile);
+                            break;
+                        }
+                    }
+                    return col;
                 }
             }
+            catch (InputMismatchException e) {
+                //didn't enter an integer
+                System.out.println("--Please enter a real number--");
+                scanner.nextLine();
+            }
+        }
+    }
+
+    public void checkForWinner(String curPlayer, char curTile, int col) {
+        //north to south
+        
+        //west to east
+        
+        //north west to south east
+        
+        //south west to north east
+        
     }
     
     public void gameOver() {
