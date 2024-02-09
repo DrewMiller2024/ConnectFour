@@ -63,10 +63,30 @@ public class Controller
         char curTile = Constants.PLAYER_ONE;
         int count = 0;//count is for testing purposes
         while(gameIsRunning) {
-            //player making a move
+            //print board
             board.printBoard();
+            //player making a move
             System.out.printf("--%s's turn--",curPlayer);
-            while(true) {
+            makeMove(curPlayer, curTile);
+            
+            //check for winner or draw(full board)
+            
+
+            //condition to stop playing game
+            if(gameStatus!=Constants.IN_PLAY) {
+                gameIsRunning = false;
+            }
+            //if game hasn't ended, switch the current player
+            curPlayer = (curPlayer.equals(player1) ? player2 : player1);
+            curTile = (curTile == Constants.PLAYER_ONE ? Constants.PLAYER_TWO : Constants.PLAYER_ONE);
+        }
+        
+        //handle updating stats after a game is over
+        gameOver();
+    }
+    
+    public void makeMove(String curPlayer, char curTile) {
+        while(true) {
                 //get player's choice of col
                 int col = -1;
                 try {
@@ -95,19 +115,9 @@ public class Controller
                     scanner.nextLine();
                 }
             }
-            
-            //check for winner or draw(full board)
-
-            //condition to stop playing game
-            if(gameStatus!=Constants.IN_PLAY) {
-                gameIsRunning = false;
-            }
-            //if game hasn't ended, switch the current player
-            curPlayer = (curPlayer.equals(player1) ? player2 : player1);
-            curTile = (curTile == Constants.PLAYER_ONE ? Constants.PLAYER_TWO : Constants.PLAYER_ONE);
-        }
-        
-        //handle updating stats after a game is over
+    }
+    
+    public void gameOver() {
         gamesPlayed++;
         if (gameStatus == Constants.P1_WINS) {
             player1Wins++;
