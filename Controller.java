@@ -18,6 +18,7 @@ public class Controller
     private int gamesPlayed;
     private int player1Wins;
     private int player2Wins;
+    private int draws;
 
     public void start() {
         //instantiate variables
@@ -28,6 +29,7 @@ public class Controller
         gamesPlayed = 0;
         player1Wins = 0;
         player2Wins = 0;
+        draws = 0;
 
         //request player names
         System.out.printf(Constants.REQUEST_PLAYER_NAME, 1);
@@ -37,7 +39,7 @@ public class Controller
 
         //requests for players to play another game or quit the program
         while(true) {
-            System.out.printf(Constants.STATS+"\n", gamesPlayed, player1, player1Wins, player2, player2Wins);
+            System.out.printf(Constants.STATS+"\n", gamesPlayed, player1, player1Wins, player2, player2Wins, draws);
             System.out.println("\n--New Game?--\n"+Constants.SS);
             String in = scanner.nextLine();
             if (in.equals(Constants.START)) {
@@ -111,6 +113,8 @@ public class Controller
             player1Wins++;
         } else if (gameStatus == Constants.P2_WINS) {
             player2Wins++;
+        } else if (gameStatus == Constants.DRAW) {
+            draws++;
         }
         gameStatus = Constants.IN_PLAY;
     }
