@@ -74,6 +74,7 @@ public class Controller
             //condition to stop playing game
             if(gameStatus!=Constants.IN_PLAY) {
                 gameIsRunning = false;
+                scanner.nextLine();
             }
             //if game hasn't ended, switch the current player
             curPlayer = (curPlayer.equals(player1) ? player2 : player1);
@@ -137,10 +138,15 @@ public class Controller
         //west to east
         int count2=0;
         for (int i = 0; i < Constants.COLS-3; i++) {
-            for (int j = i; j < i+4; i++) {
+            for (int j = i; j < i+4; j++) {
                 if (board.getCell(row, j) == curTile) {
                     count2++;
                 }
+            }
+            if (count2 == 4) {
+                break;
+            } else {
+                count2 = 0;
             }
         }
         //north west to south east
@@ -152,8 +158,10 @@ public class Controller
             playerHasWon(curPlayer, curTile);
         }
     }
-    
+
     public void playerHasWon(String curPlayer, char curTile) {
+        board.printBoard();
+
         System.out.printf("--%s has won!--", curPlayer);
         if (curTile == Constants.PLAYER_ONE) {
             gameStatus = Constants.P1_WINS;
@@ -161,7 +169,7 @@ public class Controller
             gameStatus = Constants.P2_WINS;
         }
     }
-    
+
     public void gameOver() {
         gamesPlayed++;
         if (gameStatus == Constants.P1_WINS) {
