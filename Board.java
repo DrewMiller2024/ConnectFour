@@ -12,7 +12,7 @@ public class Board
         board = new char[Constants.ROWS][Constants.COLS];
         initBoard();
     }
-    
+
     private void initBoard() {
         for (int i = 0; i < Constants.ROWS; i++) {
             for (int j = 0; j < Constants.COLS; j++) {
@@ -20,11 +20,11 @@ public class Board
             }
         }
     }
-    
+
     public void updateCell(int row, int col, char chaar) {
         board[row][col] = chaar;
     }
-    
+
     public char getCell(int row, int col) {
         return board[row][col];
     }

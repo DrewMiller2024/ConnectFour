@@ -117,14 +117,49 @@ public class Controller
     }
 
     public void checkForWinner(String curPlayer, char curTile, int col) {
+        int row = 0;
+        for (int i = 0; i < Constants.ROWS; i++) {
+            if (board.getCell(i, col) == curTile) {
+                row = i;
+                break;
+            }
+        }
         //north to south
-        
+        int count1=0;
+        for (int i = row; i < row+4; i++) {
+            if (i >= Constants.ROWS) {
+                break;
+            }
+            if (board.getCell(i, col) == curTile) {
+                count1++;
+            }
+        }
         //west to east
-        
+        int count2=0;
+        for (int i = 0; i < Constants.COLS-3; i++) {
+            for (int j = i; j < i+4; i++) {
+                if (board.getCell(row, j) == curTile) {
+                    count2++;
+                }
+            }
+        }
         //north west to south east
-        
+        int count3=0;
         //south west to north east
-        
+        int count4=0;
+        //if count = 4, then the current player has won
+        if (count1 == 4 || count2 == 4 || count3 == 4 || count4 == 4) {
+            playerHasWon(curPlayer, curTile);
+        }
+    }
+    
+    public void playerHasWon(String curPlayer, char curTile) {
+        System.out.printf("--%s has won!--", curPlayer);
+        if (curTile == Constants.PLAYER_ONE) {
+            gameStatus = Constants.P1_WINS;
+        } else {
+            gameStatus = Constants.P2_WINS;
+        }
     }
     
     public void gameOver() {
