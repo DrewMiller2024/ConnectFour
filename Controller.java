@@ -32,10 +32,7 @@ public class Controller
         draws = 0;
 
         //request player names
-        System.out.printf(Constants.REQUEST_PLAYER_NAME, 1);
-        player1 = scanner.nextLine();
-        System.out.printf(Constants.REQUEST_PLAYER_NAME, 2);
-        player2 = scanner.nextLine();
+        requestPlayerNames();
 
         //requests for players to play another game or quit the program
         while(true) {
@@ -50,6 +47,13 @@ public class Controller
                 break;
             }
         } 
+    }
+    
+    private void requestPlayerNames() {
+        System.out.printf(Constants.REQUEST_PLAYER_NAME, 1);
+        player1 = scanner.nextLine();
+        System.out.printf(Constants.REQUEST_PLAYER_NAME, 2);
+        player2 = scanner.nextLine();
     }
 
     public void eventLoop() {
@@ -66,7 +70,7 @@ public class Controller
             board.printBoard();
             //player making a move
             System.out.printf("--%s's turn--",curPlayer);
-            int move = makeMove(curPlayer, curTile);
+            int[] move = makeMove(curPlayer, curTile);
 
             //check for winner or draw(full board)
             checkForWinner(curPlayer,curTile, move);
@@ -85,7 +89,7 @@ public class Controller
         gameOver();
     }
 
-    public int makeMove(String curPlayer, char curTile) {
+    public int[] makeMove(String curPlayer, char curTile) {
         while(true) {
             //get player's choice of col
             int col = -1;
@@ -103,10 +107,10 @@ public class Controller
                     for (int i = Constants.ROWS-1; i >=0; i--) {
                         if (board.getCell(i, col) == Constants.EMPTY) {
                             board.updateCell(i, col, curTile);
-                            break;
+                            int[] arr = {i, col};
+                            return arr;
                         }
                     }
-                    return col;
                 }
             }
             catch (InputMismatchException e) {
@@ -117,100 +121,87 @@ public class Controller
         }
     }
 
-    public void checkForWinner(String curPlayer, char curTile, int col) {
-        int row = 0;
-        for (int i = 0; i < Constants.ROWS; i++) {
-            if (board.getCell(i, col) == curTile) {
-                row = i;
-                break;
-            }
+    public void checkForWinner(String curPlayer, char curTile, int[] move) {
+        //previous move made by current player
+        int row = move[0];
+        int col = move[1];
+        //checking all 4 directions for 4 in a row
+        boolean ns = northToSouth(curTile, row, col);
+        boolean we = westToEast(curTile, row);
+        boolean nwse = northWestToSouthEast(curTile);
+        boolean swne = southWestToNorthEast(curTile);
+        //a player has won or check for if the game has drawed
+        if (ns || we || nwse || swne) {
+            playerHasWon(curPlayer, curTile);
+        } else {
+            checkForDraw();   
         }
-        //north to south
-        int count1=0;
+    }
+    
+    private boolean northToSouth(char curTile, int row, int col) {
+        int count=0;
         for (int i = row; i < row+4; i++) {
             if (i >= Constants.ROWS) {
                 break;
             }
             if (board.getCell(i, col) == curTile) {
-                count1++;
+                count++;
             }
         }
-        //west to east
-        int count2=0;
+        if (count == 4) return true;
+        return false;
+    }
+    
+    private boolean westToEast(char curTile, int row) {
+        int count=0;
         for (int i = 0; i < Constants.COLS-3; i++) {
             for (int j = i; j < i+4; j++) {
                 if (board.getCell(row, j) == curTile) {
-                    count2++;
+                    count++;
                 }
             }
-            if (count2 == 4) {
-                break;
-            } else {
-                count2 = 0;
-            }
+            if (count == 4) return true;
+            count=0;
         }
-        //north west to south east
-        int count3=0;
+        return false;
+    }
+    
+    private boolean northWestToSouthEast(char curTile) {
+        int count=0;
         for (int i = 0; i < Constants.ROWS; i++) {
             for (int j = 0; j < Constants.COLS; j++) {
                 int l = i;
                 for (int k = j; k < j+4; k++) {
                     if (l >=Constants.COLS || k >= Constants.ROWS) break;
                     if (board.getCell(k, l) == curTile) {
-                        count3++;
+                        count++;
                     }
                     l++;
                 }
-                if (count3 == 4) {
-                    break;
-                } else {
-                    count3 = 0;
-                }
-            }
-            if (count3 == 4) {
-                break;
-            } else {
-                count3 = 0;
+                if (count == 4) return true;
+                count = 0;
             }
         }
-        //south west to north east
-        int count4=0;
+        return false;
+    }
+    
+    private boolean southWestToNorthEast(char curTile) {
+        int count=0;
         for (int i = Constants.ROWS; i >=0; i--) {
             for (int j = 0; j < Constants.COLS; j++) {
                 int l = i;
                 for (int k = j; k < j+4; k++) {
                     if (l < 0 || k >= Constants.ROWS) break;
                     if (board.getCell(k, l) == curTile) {
-                        count4++;
+                        count++;
                     }
                     l--;
                 }
-                if (count4 == 4) {
-                    break;
-                } else {
-                    count4 = 0;
-                }
-            }
-            if (count4 == 4) {
-                break;
-            } else {
-                count4 = 0;
+                if (count == 4) return true;
+                count=0;
             }
         }
-        //if count = 4, then the current player has won
-        if (count1 == 4 || count2 == 4 || count3 == 4 || count4 == 4) {
-            playerHasWon(curPlayer, curTile);
-        } else {
-            //draw
-            for (int i = 0; i < Constants.COLS; i++) {
-                if (board.getCell(0, i) == Constants.EMPTY) {
-                    break;
-                }
-                if (i==Constants.COLS-1) {
-                    draw();
-                }
-            }    
-        }
+        return false;
     }
 
     public void playerHasWon(String curPlayer, char curTile) {
@@ -223,10 +214,15 @@ public class Controller
             gameStatus = Constants.P2_WINS;
         }
     }
-    
-    public void draw() {
+
+    public void checkForDraw() {
+        for (int i = 0; i < Constants.COLS; i++) {
+            if (board.getCell(0, i) == Constants.EMPTY) {
+                return;
+            }
+        }  
         board.printBoard();
-        
+
         System.out.println("--Draw!--");
         gameStatus = Constants.DRAW;
     }
