@@ -151,11 +151,65 @@ public class Controller
         }
         //north west to south east
         int count3=0;
+        for (int i = 0; i < Constants.ROWS; i++) {
+            for (int j = 0; j < Constants.COLS; j++) {
+                int l = i;
+                for (int k = j; k < j+4; k++) {
+                    if (l >=Constants.COLS || k >= Constants.ROWS) break;
+                    if (board.getCell(k, l) == curTile) {
+                        count3++;
+                    }
+                    l++;
+                }
+                if (count3 == 4) {
+                    break;
+                } else {
+                    count3 = 0;
+                }
+            }
+            if (count3 == 4) {
+                break;
+            } else {
+                count3 = 0;
+            }
+        }
         //south west to north east
         int count4=0;
+        for (int i = Constants.ROWS; i >=0; i--) {
+            for (int j = 0; j < Constants.COLS; j++) {
+                int l = i;
+                for (int k = j; k < j+4; k++) {
+                    if (l < 0 || k >= Constants.ROWS) break;
+                    if (board.getCell(k, l) == curTile) {
+                        count4++;
+                    }
+                    l--;
+                }
+                if (count4 == 4) {
+                    break;
+                } else {
+                    count4 = 0;
+                }
+            }
+            if (count4 == 4) {
+                break;
+            } else {
+                count4 = 0;
+            }
+        }
         //if count = 4, then the current player has won
         if (count1 == 4 || count2 == 4 || count3 == 4 || count4 == 4) {
             playerHasWon(curPlayer, curTile);
+        } else {
+            //draw
+            for (int i = 0; i < Constants.COLS; i++) {
+                if (board.getCell(0, i) == Constants.EMPTY) {
+                    break;
+                }
+                if (i==Constants.COLS-1) {
+                    draw();
+                }
+            }    
         }
     }
 
@@ -168,6 +222,13 @@ public class Controller
         } else {
             gameStatus = Constants.P2_WINS;
         }
+    }
+    
+    public void draw() {
+        board.printBoard();
+        
+        System.out.println("--Draw!--");
+        gameStatus = Constants.DRAW;
     }
 
     public void gameOver() {
