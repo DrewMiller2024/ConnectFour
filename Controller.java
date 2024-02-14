@@ -153,8 +153,9 @@ public class Controller
         } else {
             return false;
         }
-        //player has 4 tiles in a row
+        //player has 4 tiles in a row, they win
         if (count==4) return true;
+        //if player hasn't won but is still on path of curTile's, then they continue to step
         if (step(stepR, stepC, row+stepR, col+stepC, count, curTile)) return true;
         
         return false;
